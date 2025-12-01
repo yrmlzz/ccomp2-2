@@ -1,1 +1,43 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+    int filas, columnas;
+
+    cout << "Ingrese filas: ";
+    cin >> filas;
+    cout << "Ingrese columnas: ";
+    cin >> columnas;
+
+    // 1. CREAR MATRIZ DINÁMICA
+    int **mat = new int*[filas];  // arreglo de punteros (filas)
+
+    for(int i = 0; i < filas; i++) {
+        mat[i] = new int[columnas]; // cada fila tiene columnas
+    }
+
+    // 2. LLENAR MATRIZ
+    cout << "\nLlenando matriz...\n";
+    for(int i = 0; i < filas; i++) {
+        for(int j = 0; j < columnas; j++) {
+            mat[i][j] = i + j;  // ejemplo simple
+        }
+    }
+
+    // 3. IMPRIMIR MATRIZ
+    cout << "\nMatriz generada:\n";
+    for(int i = 0; i < filas; i++) {
+        for(int j = 0; j < columnas; j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    // 4. LIBERAR MEMORIA
+    for(int i = 0; i < filas; i++) {
+        delete [] mat[i];  // borrar cada fila
+    }
+    delete [] mat;  // borrar el arreglo de punteros
+
+    return 0;
+}
